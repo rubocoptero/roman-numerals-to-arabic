@@ -1,25 +1,15 @@
 require_relative './../src/code'
 
 describe 'Roman Numerals' do
-  # Initial
-  it 'I is 1' do
-    expect_roman('I').to eq(1)
-  end
-
-  # Triangulation
-  it 'III is 3' do
-    expect_roman('III').to eq(3)
-  end
-
-
-  # Adding V
-  it 'V is 5' do
-    expect_roman('V').to eq(5)
-  end
-
-  # Substraction
-  it 'IV is 4' do
-    expect_roman('IV').to eq(4)
+  [
+    ['I', 1], # Initial
+    ['III', 3], # Triangulate
+    ['V', 5], # Add V symbol
+    ['IV', 4], # Add substraction
+  ].each do |roman, arabic|
+    it "#{roman} is #{arabic}" do
+      expect_roman(roman).to eq(arabic)
+    end
   end
 
   # TODO: Generalize even more
