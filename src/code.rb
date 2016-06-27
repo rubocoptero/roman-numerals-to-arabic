@@ -1,13 +1,17 @@
-def roman_to_arabic(roman)
-  token = roman.chars.map do |roman|
+def tokenize(roman)
+  roman.chars.map do |roman|
     TokenFactory.create(roman)
   end
+end
+
+def roman_to_arabic(roman)
+  tokens = tokenize(roman)
 
   result = 0
   last_token = TokenFactory.create('I')
   tmp = 0
 
-  token.each do |token|
+  tokens.each do |token|
     token_value = token.value
 
     if last_token.value < token_value
