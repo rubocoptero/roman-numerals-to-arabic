@@ -12,9 +12,7 @@ def roman_to_arabic(roman)
   partial_sum = 0
 
   tokens.each do |token|
-    if last_token.value < token.value
-      p token.value
-      p partial_sum
+    if last_token < token
       result = result - partial_sum
       partial_sum = 0
     else
@@ -31,6 +29,11 @@ def roman_to_arabic(roman)
 end
 
 class Token < Struct.new(:value)
+  include Comparable
+
+  def <=>(another)
+    self.value <=> another.value
+  end
 end
 
 class TokenFactory
