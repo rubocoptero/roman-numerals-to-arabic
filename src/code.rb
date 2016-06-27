@@ -9,23 +9,22 @@ def roman_to_arabic(roman)
 
   result = 0
   last_token = TokenFactory.create('I')
-  tmp = 0
+  partial_sum = 0
 
   tokens.each do |token|
     token_value = token.value
 
     if last_token.value < token_value
-      result = result - tmp
-      # TODO: Better naming
-      tmp = 0
+      result = result - partial_sum
+      partial_sum = 0
     end
 
-    tmp += token_value
+    partial_sum += token_value
 
     last_token = token
   end
 
-  result + tmp
+  result + partial_sum
 end
 
 class Token < Struct.new(:value)
