@@ -15,13 +15,15 @@ def roman_to_arabic(roman)
 
   tokens.each_index do |i|
     token = tokens[i]
-    if values[last_token] < values[token]
+    token_value = tokens2[i].value
+
+    if values[last_token] < token_value
       result = result - tmp
       # TODO: Better naming
       tmp = 0
     end
 
-    tmp += values[token]
+    tmp += token_value
 
     last_token = token
   end
