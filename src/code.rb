@@ -12,14 +12,12 @@ def roman_to_arabic(roman)
   partial_sum = 0
 
   tokens.each do |token|
-    token_value = token.value
-
-    if last_token.value < token_value
+    if last_token.value < token.value
       result = result - partial_sum
       partial_sum = 0
     end
 
-    partial_sum += token_value
+    partial_sum += token.value
 
     last_token = token
   end
