@@ -1,7 +1,15 @@
 def roman_to_arabic(roman)
-  return 5 if roman == 'V'
+  values = {
+    'I' => 1,
+    'V' => 5
+  }
 
   tokens = roman.chars
+  result = 0
 
-  tokens.size
+  tokens.each do |token|
+    result += values[token]
+  end
+
+  result
 end
