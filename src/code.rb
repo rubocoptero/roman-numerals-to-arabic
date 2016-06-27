@@ -7,17 +7,18 @@ def roman_to_arabic(roman)
   tokens = roman.chars
   result = 0
   last_token = 'I'
-
-  if roman == 'IV'
-    substract = tokens.shift
-    root = tokens.shift
-
-    return values[root] - values[substract]
-  end
+  tmp = 0
 
   tokens.each do |token|
-    result += values[token]
+    if values[last_token] < values[token]
+      result = result - tmp
+      tmp = 0
+    end
+
+    tmp += values[token]
+
+    last_token = token
   end
 
-  result
+  result + tmp
 end
