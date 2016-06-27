@@ -3,24 +3,22 @@ require_relative './../src/code'
 describe 'Roman Numerals' do
   # Initial
   it 'I is 1' do
-    arabic = roman_to_arabic('I')
-
-    expect(arabic).to eq(1)
+    expect_roman('I').to eq(1)
   end
 
   # Triangulation
   it 'III is 3' do
-    arabic = roman_to_arabic('III')
-
-    expect(arabic).to eq(3)
+    expect_roman('III').to eq(3)
   end
 
 
   # Adding V
   it 'V is 5' do
-    arabic = roman_to_arabic('V')
+    expect_roman('V').to eq(5)
+  end
 
-    expect(arabic).to eq(5)
+  def expect_roman(roman)
+    expect(roman_to_arabic(roman))
   end
 end
 
