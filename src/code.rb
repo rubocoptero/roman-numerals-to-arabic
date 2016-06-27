@@ -1,9 +1,4 @@
 def roman_to_arabic(roman)
-  values = {
-    'I' => 1,
-    'V' => 5
-  }
-
   token = roman.chars.map do |roman|
     TokenFactory.create(roman)
   end
