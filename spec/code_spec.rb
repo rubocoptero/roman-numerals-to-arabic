@@ -22,6 +22,7 @@ describe 'Roman Numerals' do
     expect_roman('IV').to eq(4)
   end
 
+  # TODO: Generalize even more
   def expect_roman(roman)
     expect(roman_to_arabic(roman))
   end

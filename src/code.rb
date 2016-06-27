@@ -4,18 +4,16 @@ def roman_to_arabic(roman)
     'V' => 5
   }
 
-  tokens2 = roman.chars.map do |roman|
+  token = roman.chars.map do |roman|
     TokenFactory.create(roman)
   end
-  tokens = roman.chars
 
   result = 0
   last_token = TokenFactory.create('I')
   tmp = 0
 
-  tokens.each_index do |i|
-    token = tokens[i]
-    token_value = tokens2[i].value
+  token.each do |token|
+    token_value = token.value
 
     if last_token.value < token_value
       result = result - tmp
@@ -25,13 +23,14 @@ def roman_to_arabic(roman)
 
     tmp += token_value
 
-    last_token = TokenFactory.create(token)
+    last_token = token
   end
 
   result + tmp
 end
 
-Token = Struct.new(:value)
+class Token < Struct.new(:value)
+end
 
 class TokenFactory
   def self.create(roman)
