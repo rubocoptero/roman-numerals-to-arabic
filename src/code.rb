@@ -4,10 +4,16 @@ def roman_to_arabic(roman)
     'V' => 5
   }
 
-  return 4 if roman == 'IV'
-
   tokens = roman.chars
   result = 0
+  last_token = 'I'
+
+  if roman == 'IV'
+    substract = tokens.shift
+    root = tokens.shift
+
+    return values[root] - values[substract]
+  end
 
   tokens.each do |token|
     result += values[token]
