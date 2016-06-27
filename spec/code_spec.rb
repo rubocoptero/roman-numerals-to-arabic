@@ -7,6 +7,8 @@ describe 'Roman Numerals' do
     ['V', 5], # Add V symbol
     ['IV', 4], # Add substraction
     ['X', 10], # Add X symbol
+    ['IX', 9], # User story test case
+    ['MLXVI', 1066], # User story test case
   ].each do |roman, arabic|
     it "#{roman} is #{arabic}" do
       expect_roman(roman).to eq(arabic)
