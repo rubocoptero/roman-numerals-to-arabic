@@ -13,7 +13,8 @@ def roman_to_arabic(roman)
   last_token = 'I'
   tmp = 0
 
-  tokens.each do |token|
+  tokens.each_index do |i|
+    token = tokens[i]
     if values[last_token] < values[token]
       result = result - tmp
       # TODO: Better naming
