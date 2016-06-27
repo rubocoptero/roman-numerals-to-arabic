@@ -10,14 +10,14 @@ def roman_to_arabic(roman)
   tokens = roman.chars
 
   result = 0
-  last_token = 'I'
+  last_token = TokenFactory.create('I')
   tmp = 0
 
   tokens.each_index do |i|
     token = tokens[i]
     token_value = tokens2[i].value
 
-    if values[last_token] < token_value
+    if last_token.value < token_value
       result = result - tmp
       # TODO: Better naming
       tmp = 0
@@ -25,7 +25,7 @@ def roman_to_arabic(roman)
 
     tmp += token_value
 
-    last_token = token
+    last_token = TokenFactory.create(token)
   end
 
   result + tmp
