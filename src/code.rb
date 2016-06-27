@@ -32,7 +32,8 @@ class TokenFactory
   def self.create(roman)
     values = {
       'I' => 1,
-      'V' => 5
+      'V' => 5,
+      'X' => 10
     }
 
     Token.new(values[roman])
