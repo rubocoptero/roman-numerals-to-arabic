@@ -1,31 +1,49 @@
 def tokenize(roman)
-  roman.chars.map do |roman|
-    TokenFactory.create(roman)
+  roman.chars.map do |symbol|
+    TokenFactory.create(symbol)
+  end
+end
+
+class Roman
+  def initialize(numeral)
+    @numeral = numeral
+  end
+
+  def to_arabic
+    tokens = tokenize(@numeral)
+
+    result = 0
+    last_token = tokens.first
+    partial_sum = 0
+
+    tokens.each do |token|
+      if last_token < token
+        result = result - partial_sum
+      else
+        result = result + partial_sum
+      end
+
+      partial_sum = 0
+
+      partial_sum += token.value
+
+      last_token = token
+    end
+
+    result + partial_sum
+  end
+
+  private
+
+  def tokenize(roman)
+    roman.chars.map do |symbol|
+      TokenFactory.create(symbol)
+    end
   end
 end
 
 def roman_to_arabic(roman)
-  tokens = tokenize(roman)
-
-  result = 0
-  last_token = tokens.first
-  partial_sum = 0
-
-  tokens.each do |token|
-    if last_token < token
-      result = result - partial_sum
-      partial_sum = 0
-    else
-      result += partial_sum
-      partial_sum = 0
-    end
-
-    partial_sum += token.value
-
-    last_token = token
-  end
-
-  result + partial_sum
+  Roman.new(roman).to_arabic
 end
 
 class Token < Struct.new(:value)
